@@ -7,6 +7,7 @@
 
 
 #include "GameState.h"
+#include "EditorState.h"
 #include "/home/insperias/CLionProjects/sdl_learn/Button.h"
 
 class MainMenuState : public State{
@@ -35,7 +36,7 @@ public:
     void updateInput(const float& dt) override;
     void updateButtons();
     void update(const float& dt) override;
-    void renderButtons(sf::RenderTarget* target = nullptr);
+    void renderButtons(sf::RenderTarget& target);
     void render(sf::RenderTarget* target = nullptr) override;
 };
 

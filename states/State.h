@@ -6,7 +6,7 @@
 #define SDL_LEARN_STATE_H
 
 
-#include "/home/insperias/CLionProjects/sdl_learn/entities/Player.h"
+#include "/home/insperias/CLionProjects/rogue_like/entities/Player.h"
 
 class State {
 private:

@@ -3,11 +3,11 @@
 //
 
 #include "GameState.h"
-#include "/home/insperias/CLionProjects/sdl_learn/Button.h"
+#include "/home/insperias/CLionProjects/rogue_like/Button.h"
 
 //Init func
 void GameState::initKeybinds() {
-    std::ifstream ifs ("/home/insperias/CLionProjects/sdl_learn/config/gamestate_keybinds.ini");
+    std::ifstream ifs ("/home/insperias/CLionProjects/rogue_like/config/gamestate_keybinds.ini");
     if(ifs.is_open())
     {
         std::string key;
@@ -25,14 +25,14 @@ void GameState::initKeybinds() {
 
 void GameState::initTextures() {
 
-    if(!this->textures["PLAYER_IDLE"].loadFromFile("/home/insperias/CLionProjects/sdl_learn/resources/sprites/player/spr_warrior_idle_down.png"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("/home/insperias/CLionProjects/rogue_like/resources/sprites/player/animations.png"))
     {
-        throw "ERROR::GAME_STATE::NOT_LOAD_PLAYER_IDLE_TEXTURE";
+        throw "ERROR::GAME_STATE::NOT_LOAD_PLAYER_TEXTURE";
     }
 }
 
 void GameState::initPlayers() {
-    this->player = new Player(0,0,this->textures["PLAYER_IDLE"]);
+    this->player = new Player(0,0,this->textures["PLAYER_SHEET"]);
 }
 
 //Constructors/Destructors
@@ -75,5 +75,5 @@ void GameState::render(sf::RenderTarget *target) {
     if (!target)
         target = this->window;
 
-    this->player->render(target);
+    this->player->render(*target);
 }

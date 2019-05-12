@@ -12,7 +12,7 @@ void MainMenuState::initVariables() {
 void MainMenuState::initBackground() {
     this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y)));
 
-    if(!this->backgroundTexture.loadFromFile("/home/insperias/CLionProjects/sdl_learn/resources/backgrounds/hh.jpg"))
+    if(!this->backgroundTexture.loadFromFile("/home/insperias/CLionProjects/rogue_like/resources/backgrounds/hh.jpg"))
     {
         throw "ERROR::MAIMENUSTATE::FAILED_TO_LOAD_BACKGRoUND_TEXTURE";
     }
@@ -22,14 +22,14 @@ void MainMenuState::initBackground() {
 }
 
 void MainMenuState::initFonts() {
-    if (!this->font.loadFromFile("/home/insperias/CLionProjects/sdl_learn/fonts/ADDSBP__.TTF"))
+    if (!this->font.loadFromFile("/home/insperias/CLionProjects/rogue_like/fonts/ADDSBP__.TTF"))
     {
         throw("ERROR::MAIN_MENU_STATE::COULD NOT LOAD FONT");
     }
 }
 
 void MainMenuState::initKeybinds() {
-    std::ifstream ifs ("/home/insperias/CLionProjects/sdl_learn/config/mainmenustate_keybinds.ini");
+    std::ifstream ifs ("/home/insperias/CLionProjects/rogue_like/config/mainmenustate_keybinds.ini");
     if(ifs.is_open())
     {
         std::string key;
@@ -106,6 +106,12 @@ void MainMenuState::updateButtons() {
         this->states->push(new GameState(this->window, this->supportedKeys,this->states));
     }
 
+    //Editor
+    if (this->buttons["EDITOR_STATE"]->isPressed())
+    {
+        this->states->push(new EditorState(this->window, this->supportedKeys,this->states));
+    }
+
     //Quit
     if (this->buttons["EXIT_STATE"]->isPressed())
     {
@@ -123,7 +129,7 @@ void MainMenuState::update(const float& dt) {
 
 }
 
-void MainMenuState::renderButtons(sf::RenderTarget *target) {
+void MainMenuState::renderButtons(sf::RenderTarget& target) {
     for (auto &it : this->buttons)
     {
         it.second->render(target);
@@ -135,7 +141,7 @@ void MainMenuState::render(sf::RenderTarget *target) {
         target = this->window;
     target->draw(this->background);
 
-    this->renderButtons(target);
+    this->renderButtons(*target);
 
 
 }

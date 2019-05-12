@@ -3,7 +3,7 @@ project(rogue_like)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(rogue_like main.cpp Game.cpp Game.h entities/Entity.cpp entities/Entity.h states/State.cpp states/State.h states/GameState.cpp states/GameState.h states/MainMenuState.cpp states/MainMenuState.h Button.cpp Button.h entities/Player.cpp entities/Player.h components/MovementComponent.cpp components/MovementComponent.h)
+add_executable(rogue_like main.cpp Game.cpp Game.h entities/Entity.cpp entities/Entity.h states/State.cpp states/State.h states/GameState.cpp states/GameState.h states/MainMenuState.cpp states/MainMenuState.h Button.cpp Button.h entities/Player.cpp entities/Player.h components/MovementComponent.cpp components/MovementComponent.h components/AnimationComponent.cpp components/AnimationComponent.h states/EditorState.cpp states/EditorState.h components/HitBoxComponent.cpp components/HitBoxComponent.h)
 
 set(SFML_DIR "/usr/share/SFML/cmake/Modules")
 set(CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules" ${CMAKE_MODULE_PATH})

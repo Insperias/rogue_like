@@ -19,7 +19,7 @@ void Game::initVariables() {
 void Game::initWindow() {
     //Create SFML window,options in window.ini
 
-    std::ifstream ifs("/home/insperias/CLionProjects/sdl_learn/config/window.ini");
+    std::ifstream ifs("/home/insperias/CLionProjects/rogue_like/config/window.ini");
     this->videoModes = sf::VideoMode::getFullscreenModes();
 
 
@@ -57,7 +57,7 @@ void Game::initWindow() {
 }
 
 void Game::initKeys() {
-    std::ifstream ifs ("/home/insperias/CLionProjects/sdl_learn/config/supported_keys.ini");
+    std::ifstream ifs ("/home/insperias/CLionProjects/rogue_like/config/supported_keys.ini");
     if(ifs.is_open())
     {
         std::string key = "";
