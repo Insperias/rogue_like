@@ -8,7 +8,7 @@
 
 #include "GameState.h"
 #include "EditorState.h"
-#include "/home/insperias/CLionProjects/sdl_learn/Button.h"
+#include "/home/insperias/CLionProjects/rogue_like/Button.h"
 
 class MainMenuState : public State{
 private:
