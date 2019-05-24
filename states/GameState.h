@@ -8,9 +8,12 @@
 
 
 #include "State.h"
+#include "../GUI/PauseMenuState.h"
 
 class GameState : public State {
 private:
+    PauseMenuState pmenu;
+
     Player* player;
 
 

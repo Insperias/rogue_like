@@ -6,7 +6,7 @@
 
 //Init func
 void Player::initVariables() {
-
+    this->attacking = false;
 }
 
 void Player::initComponents(sf::Texture& texture_sheet) {
@@ -28,6 +28,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet) {
     this->animationComponent->addAnimation("WALK_LEFT", 7.f, 2, 0, 7, 2, 33, 33);
     this->animationComponent->addAnimation("WALK_RIGHT", 7.f, 3, 0, 7, 3, 33, 33);
     this->animationComponent->addAnimation("WALK_DOWN", 7.f, 1, 0, 7, 1, 33, 33);
+    this->animationComponent->addAnimation("ATTACK", 10.f, 0, 0, 7, 0, 33, 33 );
 }
 
 Player::~Player() {
@@ -35,11 +36,16 @@ Player::~Player() {
 }
 
 //Functions
-void Player::update(const float &dt) {
-    this->movementComponent->update(dt);
-
+void Player::updateAnimation(const float &dt) {
+    if(this->attacking)
+    {
+        if(this->animationComponent->play("ATTACK", dt, true))
+            this->attacking = false;
+    }
     if (this->movementComponent->getState(IDLE))
+    {
         this->animationComponent->play("IDLE_DOWN", dt);
+    }
     else if (this->movementComponent->getState(MOVING_LEFT))
     {
         this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
@@ -56,7 +62,22 @@ void Player::update(const float &dt) {
     {
         this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
     }
+}
+
+void Player::updateAttack() {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        this->attacking = true;
+    }
+}
+
+void Player::update(const float &dt) {
+    this->movementComponent->update(dt);
+
+   this->updateAttack();
+   this->updateAnimation(dt);
 
 this->hitboxComponent->update();
 
 }
+
