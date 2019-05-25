@@ -12,14 +12,17 @@
 
 class GameState : public State {
 private:
-    PauseMenuState pmenu;
+    sf::Font font;
+    PauseMenuState* pmenu;
 
     Player* player;
 
 
     //Functions
     void initKeybinds() override;
+    void initFonts();
     void initTextures();
+    void initPauseMenu();
     void initPlayers();
 
 public:
@@ -30,6 +33,8 @@ public:
     //Functions
 
     void updateInput(const float& dt) override;
+    void updatePlayerInput(const float& dt);
+    void updatePMenuButtons();
     void update(const float& dt) override;
     void render(sf::RenderTarget* target = nullptr) override;
 

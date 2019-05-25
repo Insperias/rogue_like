@@ -79,6 +79,7 @@ void Game::initStates() {
 
 //Constructors/destructors
 Game::Game() {
+    this->initVariables();
     this->initWindow();
     this->initKeys();
     this->initStates();
